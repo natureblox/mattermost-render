@@ -66,7 +66,7 @@ if [ "$1" = 'mattermost' ]; then
   if [[ "$MM_FILESETTINGS_DRIVERNAME" == amazons3 ]]; then
     echo 'Configuring minio'
     mc config host add minio \
-      "http://${MM_FILESETTINGS_AMAZONS3ENDPOINT}" \
+      "https://${MM_FILESETTINGS_AMAZONS3ENDPOINT}" \
       "${MM_FILESETTINGS_AMAZONS3ACCESSKEYID}" \
       "${MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY}"
 
