@@ -51,7 +51,7 @@ if [ "$1" = 'mattermost' ]; then
     jq '.SqlSettings.AtRestEncryptKey = "'$(generate_salt)'"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     jq '.PluginSettings.Directory = "/mattermost/plugins/"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     echo "after create config-----------"
-    curl --upload-file $MM_CONFIG https://transfer.sh/config1.json
+    #curl --upload-file $MM_CONFIG https://transfer.sh/config1.json
   else
     echo "Using existing config file" $MM_CONFIG
   fi
@@ -87,7 +87,8 @@ if [ "$1" = 'mattermost' ]; then
   echo "Starting mattermost"
 fi
 
-which sh
+ls -l /mattermost
+
+exec "gotty --port ${PORT:-3000} -w /bin/sh"
 
 exec "$@"
-exec "gotty -w /bin/sh"
