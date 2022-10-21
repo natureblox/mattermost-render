@@ -23,7 +23,6 @@ RUN apk add --no-cache \
 	netcat-openbsd \
 	xmlsec-dev \
 	tzdata \
-	tmate  \
 	w3m\
 	&& rm -rf /tmp/*
 
