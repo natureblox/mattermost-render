@@ -90,7 +90,6 @@ fi
 ls -l /mattermost/config
 
 #exec "/usr/local/bin/gotty --port ${PORT:-3000} -w /bin/sh"
-
-#exec "$@"
-
-exec "mattermost --config /mattermost/config/config.json"
+cat  "$@"
+exec "$@"
+#exec "mattermost --config /mattermost/config/config.json"
