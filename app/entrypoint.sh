@@ -87,8 +87,10 @@ if [ "$1" = 'mattermost' ]; then
   echo "Starting mattermost"
 fi
 
-ls -l /mattermost
+ls -l /mattermost/config
 
-exec "gotty --port ${PORT:-3000} -w /bin/sh"
+#exec "/usr/local/bin/gotty --port ${PORT:-3000} -w /bin/sh"
 
-exec "$@"
+#exec "$@"
+
+exec "mattermost --config /mattermost/config/config.json"
