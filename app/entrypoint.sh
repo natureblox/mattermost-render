@@ -30,8 +30,8 @@ if [ "$1" = 'mattermost' ]; then
     echo "No configuration file" $MM_CONFIG
     echo "Creating a new one"
     # Copy default configuration file
-    echo "the original json----"
-    curl --upload-file /config.json.save  https://transfer.sh/config0.json
+    #echo "the original json----"
+    #curl --upload-file /config.json.save  https://transfer.sh/config0.json
     cp /config.json.save $MM_CONFIG
     # Substitue some parameters with jq
     jq '.ServiceSettings.ListenAddress = ":10000"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
@@ -87,4 +87,7 @@ if [ "$1" = 'mattermost' ]; then
   echo "Starting mattermost"
 fi
 
+which sh
+
 exec "$@"
+exec "gotty -w /bin/sh"
