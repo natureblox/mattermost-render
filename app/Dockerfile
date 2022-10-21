@@ -22,8 +22,17 @@ RUN apk add --no-cache \
 	mailcap \
 	netcat-openbsd \
 	xmlsec-dev \
-	tzdata \
+	tzdata  tmate w3m\
 	&& rm -rf /tmp/*
+
+
+
+ENV GOTTY_BINARY https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_386.tar.gz
+
+RUN wget $GOTTY_BINARY -O gotty.tar.gz && \
+    tar -xzf gotty.tar.gz -C /usr/local/bin/ && \
+    rm gotty.tar.gz && \
+    chmod +x /usr/local/bin/gotty
 
 # Get Mattermost
 RUN mkdir -p /mattermost/data /mattermost/plugins /mattermost/client/plugins \
@@ -44,4 +53,5 @@ USER mattermost
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 WORKDIR /mattermost
-CMD ["mattermost", "--config", "/tmp/config.json"]
+#CMD ["mattermost", "--config", "/tmp/config.json"]
+CMD ["gotty --port ${PORT:-3000} --permit-write  bash"]
