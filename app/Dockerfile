@@ -22,7 +22,9 @@ RUN apk add --no-cache \
 	mailcap \
 	netcat-openbsd \
 	xmlsec-dev \
-	tzdata  tmate w3m\
+	tzdata \
+	tmate  \
+	w3m\
 	&& rm -rf /tmp/*
 
 
