@@ -54,5 +54,6 @@ USER mattermost
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 WORKDIR /mattermost
-CMD ["mattermost", "--config", "/tmp/config.json"]
+#CMD ["mattermost", "--config", "/tmp/config.json"]
+CMD ["mattermost", "--config", "/mattermost/config/config.json"]
 #CMD ["mattermost", "--config", "/tmp/config.json"," && gotty --port ${PORT:-3000} --permit-write  /bin/sh"]
