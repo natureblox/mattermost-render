@@ -34,7 +34,7 @@ if [ "$1" = 'mattermost' ]; then
     #curl --upload-file /config.json.save  https://transfer.sh/config0.json
     cp /config.json.save $MM_CONFIG
     # Substitue some parameters with jq
-    jq '.ServiceSettings.ListenAddress = ":10000"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
+    jq '.ServiceSettings.ListenAddress = "127.0.0.1:10000"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     jq '.LogSettings.EnableConsole = true' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     jq '.LogSettings.ConsoleLevel = "ERROR"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
     jq '.FileSettings.Directory = "/mattermost/data/"' $MM_CONFIG >$MM_CONFIG.tmp && mv $MM_CONFIG.tmp $MM_CONFIG
